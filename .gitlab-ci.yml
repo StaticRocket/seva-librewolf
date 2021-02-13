@@ -26,7 +26,7 @@ variables:
     paths:
       - "LibreWolf-${pkgver}-${pkgrel}.${CARCH}.AppImage"
   script:
-    - ./appimage/build_appimage.sh "${CI_PROJECT_DIR}/${TARBALL_FILENAME}" "${CI_PROJECT_DIR}/LibreWolf-${pkgver}-${pkgrel}.${CARCH}.AppImage"
+    - ./build_appimage.sh "${CI_PROJECT_DIR}/${TARBALL_FILENAME}" "${CI_PROJECT_DIR}/LibreWolf-${pkgver}-${pkgrel}.${CARCH}.AppImage"
 
 appimage_x86_64:
   image: ubuntu:16.04
