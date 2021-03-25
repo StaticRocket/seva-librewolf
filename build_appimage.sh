@@ -47,8 +47,8 @@ wget $_APPIMAGETOOL_DOWNLOAD_URL -O $_APPIMAGETOOL_FILE;
 chmod +x $_APPIMAGETOOL_FILE;
 
 # add appstream metadata
-install -Dvm644 "$_BINARY_TARBALL_EXTRACTED_FOLDER/io.gitlab.LibreWolf.appdata.xml" "$_BINARY_TARBALL_EXTRACTED_FOLDER/usr/share/metainfo/io.gitlab.LibreWolf.appdata.xml"
-rm -f "$_BINARY_TARBALL_EXTRACTED_FOLDER/io.gitlab.LibreWolf.appdata.xml"
+install -Dvm644 "$_BINARY_TARBALL_EXTRACTED_FOLDER/io.gitlab.librewolf-community.appdata.xml" "$_BINARY_TARBALL_EXTRACTED_FOLDER/usr/share/metainfo/io.gitlab.librewolf-community.appdata.xml"
+rm -f "$_BINARY_TARBALL_EXTRACTED_FOLDER/io.gitlab.librewolf-community.appdata.xml"
 
 # add libdbus-glib-1.so.2, just in case
 install -Dvm644 "/usr/lib/${CARCH}-linux-gnu/libdbus-glib-1.so.2" "$_BINARY_TARBALL_EXTRACTED_FOLDER/usr/lib/libdbus-glib-1.so."2
