@@ -29,7 +29,7 @@ variables:
     - ./build_appimage.sh "${CI_PROJECT_DIR}/${TARBALL_FILENAME}" "${CI_PROJECT_DIR}/LibreWolf-${pkgver}-${pkgrel}.${CARCH}.AppImage"
 
 appimage_x86_64:
-  image: ubuntu:16.04
+  image: ubuntu:18.04
   tags: [x86_64b]
   <<: *carch_x86_64
   <<: *appimage_config
@@ -38,7 +38,7 @@ appimage_x86_64:
       - $X86_64
 
 appimage_aarch64:
-  image: arm64v8/ubuntu:16.04
+  image: arm64v8/ubuntu:18.04
   tags:
     - arm64
   <<: *carch_aarch64
