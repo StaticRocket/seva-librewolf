@@ -18,6 +18,12 @@ _APPIMAGE_CONTENT_FOLDER=$_SCRIPT_FOLDER/content
 # Installs needed dependencies
 apt-get update && apt-get -y install file wget bzip2 libdbus-glib-1-2
 
+if [[ $CARCH == 'aarch64' ]]; then
+  TARBALL_URL=${TARBALL_URL_AARCH64}
+else
+  TARBALL_URL=${TARBALL_URL_X86_64}
+fi
+
 if [[ ! -z "${TARBALL_URL}" ]];then
   wget "${TARBALL_URL}"
 fi
