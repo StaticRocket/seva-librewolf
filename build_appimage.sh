@@ -56,6 +56,9 @@ chmod +x $_APPIMAGETOOL_FILE;
 install -Dvm644 "$_BINARY_TARBALL_EXTRACTED_FOLDER/io.gitlab.librewolf-community.appdata.xml" "$_BINARY_TARBALL_EXTRACTED_FOLDER/usr/share/metainfo/io.gitlab.librewolf-community.appdata.xml"
 rm -f "$_BINARY_TARBALL_EXTRACTED_FOLDER/io.gitlab.librewolf-community.appdata.xml"
 
+# provide icons for appimage-launcher
+install -D -m644 "$_BINARY_TARBALL_EXTRACTED_FOLDER/browser/chrome/icons/default/default128.png" "$_BINARY_TARBALL_EXTRACTED_FOLDER/usr/share/icons/hicolor/128x128/apps/io.gitlab.librewolf-community.png"
+
 # add libdbus-glib-1.so.2, just in case
 install -Dvm644 "/usr/lib/${CARCH}-linux-gnu/libdbus-glib-1.so.2" "$_BINARY_TARBALL_EXTRACTED_FOLDER/usr/lib/libdbus-glib-1.so."2
 
