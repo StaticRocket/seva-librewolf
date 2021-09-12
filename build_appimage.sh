@@ -65,7 +65,7 @@ install -Dvm644 "/usr/lib/${CARCH}-linux-gnu/libdbus-glib-1.so.2" "$_BINARY_TARB
 # Generate AppImage
 printf "\nGenerating AppImage\n"
 ARCH=${CARCH} "$_APPIMAGETOOL_FILE" --appimage-extract-and-run \
-  "zsync|https://gitlab.com/api/v4/projects/24386000/packages/generic/librewolf/latest/LibreWolf.${CARCH}.AppImage.zsync" \
+  -u "zsync|https://gitlab.com/api/v4/projects/24386000/packages/generic/librewolf/latest/LibreWolf.${CARCH}.AppImage.zsync" \
   "$_BINARY_TARBALL_EXTRACTED_FOLDER" "$_BUILD_APPIMAGE_FILE"
 chmod +x "$_BUILD_APPIMAGE_FILE"
 
