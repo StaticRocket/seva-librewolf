@@ -24,7 +24,7 @@ variables:
   artifacts:
     name: "Librewolf-${pkgver}-${pkgrel}-AppImage-${CARCH}"
     paths:
-      - "LibreWolf-${pkgver}-${pkgrel}.${CARCH}.AppImage"
+      - "LibreWolf-${pkgver}-${pkgrel}.${CARCH}.AppImage*"
   script:
     - ./build_appimage.sh "${CI_PROJECT_DIR}/LibreWolf-${pkgver}-${pkgrel}.${CARCH}.tar.bz2" "${CI_PROJECT_DIR}/LibreWolf-${pkgver}-${pkgrel}.${CARCH}.AppImage"
 
