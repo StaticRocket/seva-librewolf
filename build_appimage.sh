@@ -16,7 +16,7 @@ _APPIMAGETOOL_FILE=$_SCRIPT_FOLDER/appimagetool
 _APPIMAGE_CONTENT_FOLDER=$_SCRIPT_FOLDER/content
 
 # Installs needed dependencies
-apt-get update && apt-get -y install file wget bzip2 libdbus-glib-1-2
+apt-get update && apt-get -y install file wget bzip2 libdbus-glib-1-2 gnupg2
 
 if [[ $CARCH == 'aarch64' ]]; then
   TARBALL_URL=${TARBALL_URL_AARCH64}
@@ -62,9 +62,12 @@ install -D -m644 "$_BINARY_TARBALL_EXTRACTED_FOLDER/browser/chrome/icons/default
 # add libdbus-glib-1.so.2, just in case
 install -Dvm644 "/usr/lib/${CARCH}-linux-gnu/libdbus-glib-1.so.2" "$_BINARY_TARBALL_EXTRACTED_FOLDER/usr/lib/libdbus-glib-1.so."2
 
+# import signing key
+gpg2 --import "${SIGNING_KEY}"
+
 # Generate AppImage
 printf "\nGenerating AppImage\n"
-ARCH=${CARCH} "$_APPIMAGETOOL_FILE" --appimage-extract-and-run \
+ARCH=${CARCH} "$_APPIMAGETOOL_FILE" --appimage-extract-and-run --sign \
   -u "zsync|https://gitlab.com/api/v4/projects/24386000/packages/generic/librewolf/latest/LibreWolf.${CARCH}.AppImage.zsync" \
   "$_BINARY_TARBALL_EXTRACTED_FOLDER" "$_BUILD_APPIMAGE_FILE"
 chmod +x "$_BUILD_APPIMAGE_FILE"
