@@ -60,7 +60,7 @@ rm -f "$_BINARY_TARBALL_EXTRACTED_FOLDER/io.gitlab.librewolf-community.appdata.x
 install -D -m644 "$_BINARY_TARBALL_EXTRACTED_FOLDER/browser/chrome/icons/default/default128.png" "$_BINARY_TARBALL_EXTRACTED_FOLDER/usr/share/icons/hicolor/128x128/apps/librewolf.png"
 
 # add libdbus-glib-1.so.2, just in case
-install -Dvm644 "/usr/lib/${CARCH}-linux-gnu/libdbus-glib-1.so.2" "$_BINARY_TARBALL_EXTRACTED_FOLDER/usr/lib/libdbus-glib-1.so."2
+install -Dvm644 "/usr/lib/${CARCH}-linux-gnu/libdbus-glib-1.so.2" "$_BINARY_TARBALL_EXTRACTED_FOLDER/usr/lib/libdbus-glib-1.so.2"
 
 # import signing key
 gpg2 --import "${SIGNING_KEY}"
