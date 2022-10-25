@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   appimage_aarch64:
-    runs-on: ubuntu-latest
+    runs-on: ARM64
     container: arm64v8/ubuntu:18.04
     steps:
       - name: Check out repository code
