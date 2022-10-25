@@ -10,11 +10,10 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Build AppImage with build_appimage.sh
-        run: ./build_appimage.sh "${CI_PROJECT_DIR}/LibreWolf-${pkgver}-${pkgrel}.${CARCH}.tar.bz2" "${CI_PROJECT_DIR}/LibreWolf-${pkgver}-${pkgrel}.${CARCH}.AppImage"
+        run: ./build_appimage.sh
         env:
           CARCH: 'aarch64'
       - name: Upload AppImage artifact
         uses: actions/upload-artifact@v3
         with:
-          name: "Librewolf-${pkgver}-${pkgrel}-AppImage-${CARCH}"
-          path: "LibreWolf-${pkgver}-${pkgrel}.${CARCH}.AppImage*"
+          path: "LibreWolf-*-*.*.AppImage*"

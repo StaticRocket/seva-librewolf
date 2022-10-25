@@ -5,9 +5,11 @@ printf "\n\n------------------------------------ APPIMAGE BUILD ----------------
 set -e
 
 # Sets up script variables
-BINARY_TARBALL=$1
-APPIMAGE_FILE=$2
-_SCRIPT_FOLDER=$(realpath $(dirname $0))
+PKGVER=106.0.1
+PKGREL=1
+BINARY_TARBALL=LibreWolf-${PKGVER}-${PKGREL}.${CARCH}.tar.bz2
+APPIMAGE_FILE=LibreWolf-${PKGVER}-${PKGREL}.${CARCH}.AppImage
+_SCRIPT_FOLDER=$(realpath "$(dirname "$0")")
 _BINARY_TARBALL_EXTRACTED_FOLDER=$_SCRIPT_FOLDER/librewolf
 _BUILD_APPIMAGE_FILE=$_SCRIPT_FOLDER/LibreWolf.${CARCH}.AppImage
 _APPIMAGETOOL_DOWNLOAD_URL=https://github.com/AppImage/AppImageKit/releases/latest/download/appimagetool-${CARCH}.AppImage
@@ -18,15 +20,7 @@ _APPIMAGE_CONTENT_FOLDER=$_SCRIPT_FOLDER/content
 # Installs needed dependencies
 apt-get update && apt-get -y install file wget bzip2 libdbus-glib-1-2 gnupg2
 
-if [[ $CARCH == 'aarch64' ]]; then
-  TARBALL_URL=${TARBALL_URL_AARCH64}
-else
-  TARBALL_URL=${TARBALL_URL_X86_64}
-fi
-
-if [[ ! -z "${TARBALL_URL}" ]]; then
-  wget "${TARBALL_URL}"
-fi
+wget "https://gitlab.com/api/v4/projects/12829184/packages/generic/librewolf/${PKGVER}-${PKGREL}/${BINARY_TARBALL}"
 
 if [[ ! -f "${BINARY_TARBALL}" ]]; then
   echo "Tarball not provided via pipeline or download."
@@ -63,11 +57,11 @@ install -D -m644 "$_BINARY_TARBALL_EXTRACTED_FOLDER/browser/chrome/icons/default
 install -Dvm644 "/usr/lib/${CARCH}-linux-gnu/libdbus-glib-1.so.2" "$_BINARY_TARBALL_EXTRACTED_FOLDER/usr/lib/libdbus-glib-1.so.2"
 
 # import signing key
-gpg2 --import "${SIGNING_KEY}"
+#gpg2 --import "${SIGNING_KEY}"
 
 # Generate AppImage
 printf "\nGenerating AppImage\n"
-ARCH=${CARCH} "$_APPIMAGETOOL_FILE" --appimage-extract-and-run --sign \
+ARCH=${CARCH} "$_APPIMAGETOOL_FILE" --appimage-extract-and-run \
   -u "zsync|https://gitlab.com/api/v4/projects/24386000/packages/generic/librewolf/latest/LibreWolf.${CARCH}.AppImage.zsync" \
   "$_BINARY_TARBALL_EXTRACTED_FOLDER" "$_BUILD_APPIMAGE_FILE"
 chmod +x "$_BUILD_APPIMAGE_FILE"
